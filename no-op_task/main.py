@@ -1,22 +1,21 @@
 def markdown_to_text(doc_content):
-    last = list(map(lambda x: x.lstrip('# '), doc_content.split('\n')))
-    last2 = remove_asterix_from_words(last)
-    return last2
+    list_with_lstrip = list(map(lambda x: x.lstrip('# '), doc_content.split('\n')))
+    return remove_asterix_from_words(list_with_lstrip)
+
 def remove_asterix_from_words(doc_content_list):
-    list2 = []
-    list3 = []
-    list4 = []
-    string = ''
+    list_separate_word_line = []
+    list_combine_words = []
+    list_combine_lines = []
     for line in doc_content_list:
-        list2.append(line.split(' '))
-    for sublist in list2:
-        sublist2 = []
+        list_separate_word_line.append(line.split(' '))
+    for sublist in list_separate_word_line:
+        new_sublist = []
         for value in sublist:
             if len(value) > 1:
-                sublist2.append(value.strip('*'))
+                new_sublist.append(value.strip('*'))
             else:
-               sublist2.append(value) 
-        list3.append(sublist2)
-    for line in list3:
-        list4.append(' '.join(line))
-    return '\n'.join(list4)
+               new_sublist.append(value) 
+        list_combine_words.append(new_sublist)
+    for line in list_combine_words:
+        list_combine_lines.append(' '.join(line))
+    return '\n'.join(list_combine_lines)
